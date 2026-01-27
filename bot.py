@@ -28,14 +28,14 @@ def is_in_stock():
 
 def main():
     last_status = is_in_stock()
-    log("Pokemon Drop Monitor Started")
+    log("Pokemon Drop Monitor Started") # Checks current stock once
 
     try:
         while True:
-            current_status = is_in_stock()
+            current_status = is_in_stock() # checks stock every CHECK_INTERVAL (60 sec)
             log("Checked stock status")
 
-            if current_status and not last_status:
+            if current_status and not last_status: # Alert condition only fires when items become in stock
                 send_discord_alert(
                     f"🔥 **POKÉMON ETB RESTOCK DETECTED** 🔥\n{PRODUCT_URL}"
                 )
