@@ -1,14 +1,20 @@
 from sites import pokemon_center
-def main():
-    listings = []
+from alert import send_discord_alert
 
-    try:
-        listings.extend(pokemon_center.check())
-    except Exception as e:
-        print("Pokemon Center error:", e)
-    
+seen = set()
+
+def main():
+    listings = pokemon_center.check()
+
     for item in listings:
-        print(item)
+        key = f"{item['site']}_{item['url']}"
+
+        if item["in_stock"] and key not in seen:
+            seen.add(key)
+            send_discord_alert(item)
+            print("ALERT SENT!")
+        else:
+            print("No restock:", item["site"])
 
 if __name__ == "__main__":
     main()

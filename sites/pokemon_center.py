@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import re
 
 # URL is defined here for test
-URL = "https://www.pokemoncenter.com/product/10-10372-109/pokemon-tcg-mega-evolution-perfect-order-pokemon-center-elite-trainer-box"
+URL = "https://www.pokemoncenter.com/category/elite-trainer-box?srsltid=AfmBOoqOEeB7teZpL3G4ExmRyiIPpnYvKZo7DCysnTWPbscx9sGofEnI"
 
 def check():
     try:
@@ -35,7 +35,7 @@ def check():
 
     # Title
     title_tag = soup.find("title")
-    title = title_tag.text.strip() if title_tag else "Mega Evolution Perfect Order ETB"
+    title = title_tag.text.strip() if title_tag else "Pokemon Center Elite Trainer Box"
 
     # Price
     price = None
